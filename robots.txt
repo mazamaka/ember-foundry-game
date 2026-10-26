@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mazamaka.github.io/ember-foundry-game/sitemap.xml

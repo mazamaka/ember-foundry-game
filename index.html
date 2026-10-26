@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ru" data-repo="mazamaka/ember-foundry-game">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.classList.add("js")</script>
+<title>Ember Foundry — Хранители леса · фабрика и tower defense</title>
+<meta name="description" content="Ember Foundry — фабрика и оборона в лесу: днём строишь производство и прокладываешь ленты, ночью держишь осаду замка. Бесплатно для Windows и macOS.">
+<meta name="theme-color" content="#0c1222">
+<link rel="canonical" href="https://mazamaka.github.io/ember-foundry-game/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ember Foundry">
+<meta property="og:title" content="Ember Foundry — Хранители леса">
+<meta property="og:description" content="Построй фабрику. Удержи ночную осаду. Бесплатно для Windows и macOS.">
+<meta property="og:url" content="https://mazamaka.github.io/ember-foundry-game/">
+<meta property="og:image" content="https://mazamaka.github.io/ember-foundry-game/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/alegreya-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/alegreya-sans-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/alegreya-sc-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"Ember Foundry","alternateName":"Ember Foundry — Хранители леса","url":"https://mazamaka.github.io/ember-foundry-game/","image":"https://mazamaka.github.io/ember-foundry-game/assets/img/og.jpg","description":"Фабрика и tower defense в лесу: днём строишь производство, ночью держишь осаду замка.","genre":["Factory","Tower defense","Strategy"],"gamePlatform":["Windows","macOS"],"operatingSystem":"Windows 10, Windows 11, macOS","applicationCategory":"Game","inLanguage":"ru","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">К содержимому</a>
+<span class="header-sentinel" aria-hidden="true"></span>
+<header class="site-header" data-header>
+  <div class="wrap header-bar">
+    <a class="brand" href="#top" aria-label="Ember Foundry — наверх" data-i18n-aria="brand.aria">
+      <span class="emblem emblem-sm" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#beacon"/></svg></span>
+      <span class="brand-word">Ember Foundry</span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Разделы" data-i18n-aria="nav.aria">
+      <ul>
+        <li><a href="#daynight" data-i18n="nav.game">Игра</a></li>
+        <li><a href="#features" data-i18n="nav.features">Возможности</a></li>
+        <li><a href="#gallery" data-i18n="nav.gallery">Галерея</a></li>
+        <li><a href="#download" data-i18n="nav.download">Скачать</a></li>
+        <li><a href="#craft" data-i18n="nav.craft">Как сделано</a></li>
+        <li><a href="#faq" data-i18n="nav.faq">Вопросы</a></li>
+      </ul>
+    </nav>
+    <div class="header-tools">
+      <button class="lang" type="button" data-lang-toggle aria-label="Switch to English">EN</button>
+      <a class="btn btn-gold btn-sm header-cta" href="#download" data-i18n="cta.download.short">Скачать</a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="site-nav" data-burger>
+        <span class="visually-hidden" data-i18n="nav.menu">Меню</span><span class="burger-lines" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="hero-media" aria-hidden="true">
+    <picture>
+      <source type="image/avif" srcset="assets/img/night-hero-640.avif 640w, assets/img/night-hero-1280.avif 1280w, assets/img/night-hero-1920.avif 1920w" sizes="100vw">
+      <source type="image/webp" srcset="assets/img/night-hero-640.webp 640w, assets/img/night-hero-1280.webp 1280w, assets/img/night-hero-1920.webp 1920w" sizes="100vw">
+      <img class="hero-still" src="assets/img/night-hero-1280.jpg" width="1920" height="1080" alt="" fetchpriority="high">
+    </picture>
+    <video class="hero-video" muted loop playsinline preload="none" data-hero-video data-poster="assets/video/hero-poster.webp">
+      <source data-src="assets/video/hero.mp4" type="video/mp4">
+    </video>
+    <canvas class="embers" data-embers></canvas>
+  </div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow" data-i18n="hero.eyebrow">Фабрика и tower defense · Windows и macOS</p>
+    <h1 class="lockup">
+      <span class="emblem" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#beacon"/></svg></span>
+      <span class="lockup-text">
+        <span class="lockup-word">Ember Foundry</span>
+        <span class="lockup-motto"><span data-i18n="motto">Хранители леса</span><span class="rule" aria-hidden="true"></span></span>
+      </span>
+    </h1>
+    <p class="tagline" data-i18n-html="hero.tagline">Построй фабрику.<br>Удержи ночную осаду.</p>
+    <p class="lead" data-i18n="hero.lead">Днём рубишь лес, прокладываешь ленты и ставишь мастерские. Ночью по дороге к замку идут скелеты — и всё, что ты построил, работает на оборону. А за границей леса ждёт источник тьмы.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold btn-lg" href="#download" data-primary-download>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg>
+        <span data-primary-label data-i18n="cta.download">Скачать бесплатно</span>
+      </a>
+      <a class="btn btn-ghost btn-lg" href="#daynight" data-i18n="cta.look">Посмотреть игру</a>
+    </div>
+    <p class="hero-meta" data-release-meta><span data-i18n="meta.early">Ранняя версия</span> <span data-release="version">0.9.33</span><span class="release-date" data-release="date"></span> · <span data-i18n="meta.free">бесплатно, без регистрации</span></p>
+  </div>
+  <button class="video-toggle" type="button" data-video-toggle aria-pressed="false" hidden>
+    <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pause"/></svg><span class="visually-hidden" data-i18n="video.pause">Остановить фоновое видео</span>
+  </button>
+  <a class="scroll-cue" href="#daynight" aria-label="Дальше" data-i18n-aria="cue"><span></span></a>
+</section>
+
+<section class="section daynight" id="daynight">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <p class="kicker" data-i18n="dn.kicker">Смена суток</p>
+      <h2 data-i18n-html="dn.title">День строит. Ночь&nbsp;проверяет.</h2>
+      <p data-i18n="dn.text">Один и тот же уголок карты в полдень и после заката. Потяни ползунок — и посмотри, как загораются фонари, окна мастерских и маяк над замком.</p>
+    </header>
+    <div class="compare reveal" data-compare style="--pos: 50%">
+      <picture>
+        <source type="image/avif" srcset="assets/img/night-mid-640.avif 640w, assets/img/night-mid-1280.avif 1280w, assets/img/night-mid-1920.avif 1920w" sizes="(min-width: 1240px) 1192px, 100vw">
+        <source type="image/webp" srcset="assets/img/night-mid-640.webp 640w, assets/img/night-mid-1280.webp 1280w, assets/img/night-mid-1920.webp 1920w" sizes="(min-width: 1240px) 1192px, 100vw">
+        <img src="assets/img/night-mid-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Замок и башни ночью: горят фонари и маяк" data-i18n-alt="dn.alt.night">
+      </picture>
+      <div class="compare-day">
+        <picture>
+          <source type="image/avif" srcset="assets/img/day-mid-640.avif 640w, assets/img/day-mid-1280.avif 1280w, assets/img/day-mid-1920.avif 1920w" sizes="(min-width: 1240px) 1192px, 100vw">
+          <source type="image/webp" srcset="assets/img/day-mid-640.webp 640w, assets/img/day-mid-1280.webp 1280w, assets/img/day-mid-1920.webp 1920w" sizes="(min-width: 1240px) 1192px, 100vw">
+          <img src="assets/img/day-mid-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Тот же вид в полдень" data-i18n-alt="dn.alt.day">
+        </picture>
+      </div>
+      <div class="compare-handle" aria-hidden="true">
+        <span class="compare-knob"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg><svg viewBox="0 0 24 24"><use href="#i-moon"/></svg></span>
+      </div>
+      <span class="compare-label compare-label-day" aria-hidden="true" data-i18n="dn.day">День</span>
+      <span class="compare-label compare-label-night" aria-hidden="true" data-i18n="dn.night">Ночь</span>
+      <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Граница дня и ночи" data-i18n-aria="dn.range">
+    </div>
+    <div class="dn-notes">
+      <article class="note reveal">
+        <h3><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sun"/></svg><span data-i18n="dn.day.title">День — стройка</span></h3>
+        <p data-i18n="dn.day.text">Лесорубы, каменоломни, лесопилки и плавильни. Ресурсы едут по лентам в замок, а из него — на новые постройки и башни.</p>
+      </article>
+      <article class="note reveal">
+        <h3><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-moon"/></svg><span data-i18n="dn.night.title">Ночь — осада</span></h3>
+        <p data-i18n="dn.night.text">По дороге идут скелеты, щитоносцы, колдуны и разведчики, на шестую ночь — босс региона. Свет замка, фонарей и маяков — всё, что держит тьму.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section features" id="features">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <p class="kicker" data-i18n="ft.kicker">Что внутри</p>
+      <h2 data-i18n-html="ft.title">Фабрика, оборона и экспедиция — в&nbsp;одной игре</h2>
+    </header>
+
+    <article class="feature reveal">
+      <div class="feature-media frame">
+        <picture>
+          <source type="image/avif" srcset="assets/img/factory-night-640.avif 640w, assets/img/factory-night-1280.avif 1280w, assets/img/factory-night-1920.avif 1920w" sizes="(min-width: 960px) 58vw, 100vw">
+          <source type="image/webp" srcset="assets/img/factory-night-640.webp 640w, assets/img/factory-night-1280.webp 1280w, assets/img/factory-night-1920.webp 1920w" sizes="(min-width: 960px) 58vw, 100vw">
+          <img src="assets/img/factory-night-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Ночная фабрика: шахты, ленты с рудой и углём, плавильни и кузницы" data-i18n-alt="f1.alt">
+        </picture>
+      </div>
+      <div class="feature-text">
+        <p class="feature-tag"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-build"/></svg><span data-i18n="f1.tag">Фабрика</span></p>
+        <h3 data-i18n="f1.title">Лес становится досками, руда — железом</h3>
+        <p data-i18n="f1.text">Ставь лесорубов и каменоломни у залежей и тяни ленты зажатой кнопкой мыши — повороты и стыки сложатся сами. Развилки, слияния, перекрёстки и подземные ленты разводят потоки, а лесопилки, плавильни, угольные печи и кузницы превращают сырьё в то, из чего строят башни.</p>
+        <ul class="chips">
+          <li data-i18n="f1.c1">28 производственных и транспортных построек</li>
+          <li data-i18n="f1.c2">Залежи кончаются — фабрика переезжает</li>
+          <li data-i18n="f1.c3">Ручная добыча кликом</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="feature feature-flip reveal">
+      <div class="feature-media frame">
+        <picture>
+          <source type="image/avif" srcset="assets/img/battle-tower-640.avif 640w, assets/img/battle-tower-1280.avif 1280w, assets/img/battle-tower-1920.avif 1920w" sizes="(min-width: 960px) 58vw, 100vw">
+          <source type="image/webp" srcset="assets/img/battle-tower-640.webp 640w, assets/img/battle-tower-1280.webp 1280w, assets/img/battle-tower-1920.webp 1920w" sizes="(min-width: 960px) 58vw, 100vw">
+          <img src="assets/img/battle-tower-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Ночной бой у башен: открыта карточка катапульты с веткой «Зажигательный снаряд»" data-i18n-alt="f2.alt">
+        </picture>
+      </div>
+      <div class="feature-text">
+        <p class="feature-tag"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-fortress"/></svg><span data-i18n="f2.tag">Оборона</span></p>
+        <h3 data-i18n="f2.title">11 башен и 22 ветки улучшений</h3>
+        <p data-i18n="f2.text">Самострелы и баллисты, катапульты и бомбарды, смоляные бочки, шипы, цепной гарпун, ракетная башня, катушка Теслы и кузнечный молот. Башни набирают опыт в бою, а у каждой — две ветки: поджечь землю, пробить броню, достать летающих.</p>
+        <ul class="chips">
+          <li data-i18n="f2.c1">Опыт и ветки у каждой башни</li>
+          <li data-i18n="f2.c2">Отряд замка: ополчение, лучники, рыцари</li>
+          <li data-i18n="f2.c3">Свои приоритеты целей</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="feature reveal">
+      <div class="feature-media frame fog-frame" data-fog>
+        <picture>
+          <source type="image/avif" srcset="assets/img/grove-start-640.avif 640w, assets/img/grove-start-1280.avif 1280w, assets/img/grove-start-1920.avif 1920w" sizes="(min-width: 960px) 58vw, 100vw">
+          <source type="image/webp" srcset="assets/img/grove-start-640.webp 640w, assets/img/grove-start-1280.webp 1280w, assets/img/grove-start-1920.webp 1920w" sizes="(min-width: 960px) 58vw, 100vw">
+          <img src="assets/img/grove-start-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Начало экспедиции: замок света посреди Изумрудной чащи" data-i18n-alt="f3.alt">
+        </picture>
+        <canvas class="fog" aria-hidden="true"></canvas>
+        <p class="fog-hint" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><use href="#beacon"/></svg><span data-i18n="f3.hint">Веди курсором — свет маяка разгонит туман</span></p>
+      </div>
+      <div class="feature-text">
+        <p class="feature-tag"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg><span data-i18n="f3.tag">Экспедиция</span></p>
+        <h3 data-i18n="f3.title">Карта, которую открываешь сам</h3>
+        <p data-i18n="f3.text">Мир скрыт туманом. Маяки и разведка открывают его клетка за клеткой: в глубине — сундуки, алтари с кристаллами и вражеская крепость. Победи босса шестой ночи или собери кристаллы и возьми крепость штурмом — так выигрывается регион.</p>
+        <ul class="chips">
+          <li data-i18n="f3.c1">3 региона: Изумрудная чаща, Янтарная долина, Сумрачные холмы</li>
+          <li data-i18n="f3.c2">Два пути к победе</li>
+          <li data-i18n="f3.c3">Новая карта в каждой экспедиции</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="feature feature-flip reveal">
+      <div class="feature-media frame">
+        <picture>
+          <source type="image/avif" srcset="assets/img/upgrades-640.avif 640w, assets/img/upgrades-1280.avif 1280w, assets/img/upgrades-1920.avif 1920w" sizes="(min-width: 960px) 58vw, 100vw">
+          <source type="image/webp" srcset="assets/img/upgrades-640.webp 640w, assets/img/upgrades-1280.webp 1280w, assets/img/upgrades-1920.webp 1920w" sizes="(min-width: 960px) 58vw, 100vw">
+          <img src="assets/img/upgrades-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Атлас талантов: цепочки постоянных улучшений" data-i18n-alt="f4.alt">
+        </picture>
+      </div>
+      <div class="feature-text">
+        <p class="feature-tag"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-upgrade"/></svg><span data-i18n="f4.tag">Прокачка</span></p>
+        <h3 data-i18n="f4.title">Между экспедициями</h3>
+        <p data-i18n="f4.text">За каждую экспедицию начисляются монеты. Они идут в атлас талантов: стартовые припасы, прочность замка, новые здания и башни, усиления разведки. Для тех, кому мало, — испытания после победы и моды.</p>
+        <ul class="chips">
+          <li data-i18n="f4.c1">119 талантов</li>
+          <li data-i18n="f4.c2">6 достижений</li>
+          <li data-i18n="f4.c3">5 слотов сохранения</li>
+          <li data-i18n="f4.c4">Поддержка модов</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section showreel" id="video">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <p class="kicker" data-i18n="vid.kicker">В движении</p>
+      <h2 data-i18n="vid.title">Закат над Сумрачными холмами</h2>
+      <p data-i18n="vid.text">Двадцать секунд поздней игры без монтажа: солнце садится, загораются фонари, ночная колонна выходит к башням.</p>
+    </header>
+    <div class="player frame reveal" data-player>
+      <video controls muted playsinline preload="none" poster="assets/video/dusk-poster.webp" width="1280" height="720" data-dusk-video>
+        <source src="assets/video/dusk.mp4" type="video/mp4">
+      </video>
+      <button class="player-start" type="button" data-player-start>
+        <span class="play-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></span>
+        <span data-i18n="vid.play">Смотреть 0:20</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="section gallery" id="gallery">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <p class="kicker" data-i18n="gal.kicker">Скриншоты</p>
+      <h2 data-i18n="gal.title">Как это выглядит</h2>
+      <p data-i18n="gal.text">Кадры из версии 0.9.33: графика и интерфейс такие же, как в игре.</p>
+    </header>
+    <ul class="shots" data-gallery>
+      <li class="shot shot-wide reveal"><button type="button" data-full="night-wide" data-i18n-caption="g.night-wide" data-caption="Ночь над поздней фабрикой: лучи замка и маяков"><picture><source type="image/avif" srcset="assets/img/night-wide-640.avif 640w, assets/img/night-wide-1280.avif 1280w" sizes="(min-width: 960px) 66vw, 100vw"><source type="image/webp" srcset="assets/img/night-wide-640.webp 640w, assets/img/night-wide-1280.webp 1280w" sizes="(min-width: 960px) 66vw, 100vw"><img src="assets/img/night-wide-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Ночь над поздней фабрикой" data-i18n-alt="g.night-wide.alt"></picture></button></li>
+      <li class="shot reveal"><button type="button" data-full="grove-hud" data-i18n-caption="g.grove-hud" data-caption="Первый день в Изумрудной чаще"><picture><source type="image/avif" srcset="assets/img/grove-hud-640.avif 640w, assets/img/grove-hud-1280.avif 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="assets/img/grove-hud-640.webp 640w, assets/img/grove-hud-1280.webp 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="assets/img/grove-hud-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Первый день в Изумрудной чаще" data-i18n-alt="g.grove-hud.alt"></picture></button></li>
+      <li class="shot reveal"><button type="button" data-full="play-day" data-i18n-caption="g.play-day" data-caption="Полдень: фабрика работает, башни ждут ночи"><picture><source type="image/avif" srcset="assets/img/play-day-640.avif 640w, assets/img/play-day-1280.avif 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="assets/img/play-day-640.webp 640w, assets/img/play-day-1280.webp 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="assets/img/play-day-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Полдень в поздней игре, интерфейс" data-i18n-alt="g.play-day.alt"></picture></button></li>
+      <li class="shot reveal"><button type="button" data-full="play-night" data-i18n-caption="g.play-night" data-caption="Та же позиция ночью"><picture><source type="image/avif" srcset="assets/img/play-night-640.avif 640w, assets/img/play-night-1280.avif 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="assets/img/play-night-640.webp 640w, assets/img/play-night-1280.webp 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="assets/img/play-night-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Поздняя игра ночью, интерфейс" data-i18n-alt="g.play-night.alt"></picture></button></li>
+      <li class="shot reveal"><button type="button" data-full="factory-day" data-i18n-caption="g.factory-day" data-caption="Шахты, плавильни и угольные печи"><picture><source type="image/avif" srcset="assets/img/factory-day-640.avif 640w, assets/img/factory-day-1280.avif 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="assets/img/factory-day-640.webp 640w, assets/img/factory-day-1280.webp 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="assets/img/factory-day-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Производственный квартал днём" data-i18n-alt="g.factory-day.alt"></picture></button></li>
+      <li class="shot reveal"><button type="button" data-full="regions" data-i18n-caption="g.regions" data-caption="Выбор региона новой экспедиции"><picture><source type="image/avif" srcset="assets/img/regions-640.avif 640w, assets/img/regions-1280.avif 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="assets/img/regions-640.webp 640w, assets/img/regions-1280.webp 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="assets/img/regions-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Экран выбора региона" data-i18n-alt="g.regions.alt"></picture></button></li>
+      <li class="shot reveal"><button type="button" data-full="factory-night-wide" data-i18n-caption="g.factory-night-wide" data-caption="Ночная смена"><picture><source type="image/avif" srcset="assets/img/factory-night-wide-640.avif 640w, assets/img/factory-night-wide-1280.avif 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="assets/img/factory-night-wide-640.webp 640w, assets/img/factory-night-wide-1280.webp 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="assets/img/factory-night-wide-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Фабрика ночью" data-i18n-alt="g.factory-night-wide.alt"></picture></button></li>
+      <li class="shot shot-wide shot-wide-right reveal"><button type="button" data-full="battle-night" data-i18n-caption="g.battle-night" data-caption="Ночная колонна выходит к башням"><picture><source type="image/avif" srcset="assets/img/battle-night-640.avif 640w, assets/img/battle-night-1280.avif 1280w" sizes="(min-width: 960px) 66vw, 100vw"><source type="image/webp" srcset="assets/img/battle-night-640.webp 640w, assets/img/battle-night-1280.webp 1280w" sizes="(min-width: 960px) 66vw, 100vw"><img src="assets/img/battle-night-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Враги выходят к башням ночью" data-i18n-alt="g.battle-night.alt"></picture></button></li>
+      <li class="shot reveal"><button type="button" data-full="shop" data-i18n-caption="g.shop" data-caption="Каталог построек: оборона"><picture><source type="image/avif" srcset="assets/img/shop-640.avif 640w, assets/img/shop-1280.avif 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="assets/img/shop-640.webp 640w, assets/img/shop-1280.webp 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="assets/img/shop-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Каталог построек" data-i18n-alt="g.shop.alt"></picture></button></li>
+      <li class="shot shot-wide reveal"><button type="button" data-full="boss" data-i18n-caption="g.boss" data-caption="Владыка сумерек, босс Сумрачных холмов, у стен замка"><picture><source type="image/avif" srcset="assets/img/boss-640.avif 640w, assets/img/boss-1280.avif 1280w" sizes="(min-width: 960px) 66vw, 100vw"><source type="image/webp" srcset="assets/img/boss-640.webp 640w, assets/img/boss-1280.webp 1280w" sizes="(min-width: 960px) 66vw, 100vw"><img src="assets/img/boss-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Босс на дороге к замку ночью" data-i18n-alt="g.boss.alt"></picture></button></li>
+      <li class="shot reveal"><button type="button" data-full="menu" data-i18n-caption="g.menu" data-caption="Главное меню"><picture><source type="image/avif" srcset="assets/img/menu-640.avif 640w, assets/img/menu-1280.avif 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="assets/img/menu-640.webp 640w, assets/img/menu-1280.webp 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="assets/img/menu-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Главное меню игры" data-i18n-alt="g.menu.alt"></picture></button></li>
+      <li class="shot reveal"><button type="button" data-full="fortress" data-i18n-caption="g.fortress" data-caption="Штурм вражеской крепости под куполом"><picture><source type="image/avif" srcset="assets/img/fortress-640.avif 640w, assets/img/fortress-1280.avif 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><source type="image/webp" srcset="assets/img/fortress-640.webp 640w, assets/img/fortress-1280.webp 1280w" sizes="(min-width: 960px) 33vw, (min-width: 600px) 50vw, 100vw"><img src="assets/img/fortress-1280.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Отряд штурмует вражескую крепость под куполом" data-i18n-alt="g.fortress.alt"></picture></button></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section download" id="download">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <p class="kicker" data-i18n="dl.kicker">Бесплатно</p>
+      <h2 data-i18n="dl.title">Скачай и играй</h2>
+      <p data-i18n="dl.text">Ранняя версия: игра активно развивается, новые сборки выходят каждые несколько дней. Сохранения переживают обновления и переустановку.</p>
+    </header>
+    <p class="dl-mobile" data-mobile-note hidden>
+      <span data-i18n="dl.mobile">Игра для компьютера. Отправь ссылку себе на Windows или Mac:</span>
+      <button class="btn btn-ghost btn-sm" type="button" data-copy-link data-i18n="dl.copylink">Скопировать ссылку</button>
+    </p>
+    <div class="dl-grid">
+      <article class="dl-card reveal" data-platform="windows">
+        <div class="dl-head">
+          <svg class="os" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-windows"/></svg>
+          <div>
+            <h3>Windows</h3>
+            <p class="dl-req" data-i18n="dl.win.req">Windows 10 или 11 (64 бит) · видеокарта с Vulkan · ≈700 МБ на диске</p>
+          </div>
+        </div>
+        <a class="btn btn-gold btn-block" href="https://github.com/mazamaka/ember-foundry-game/releases/latest" data-asset="windows">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg><span data-i18n="dl.win.btn">Скачать установщик</span>
+        </a>
+        <p class="dl-file"><span data-file="windows">EmberFoundry-Windows-Setup.exe</span><span class="dl-size" data-size="windows"></span></p>
+        <ol class="steps">
+          <li data-i18n="dl.win.s1">Запусти установщик: права администратора не нужны, ярлык появится на рабочем столе.</li>
+          <li data-i18n-html="dl.win.s2">Если Windows покажет «Система Windows защитила ваш компьютер», нажми <b>Подробнее</b> → <b>Выполнить в&nbsp;любом случае</b>: установщик пока не подписан платным сертификатом.</li>
+          <li data-i18n="dl.win.s3">Обновление — новый установщик поверх старого, прогресс останется.</li>
+        </ol>
+        <details class="sha"><summary data-i18n="dl.sha">Контрольная сумма SHA-256</summary><code data-sha="windows">—</code><button class="copy" type="button" data-copy-sha="windows" data-i18n="dl.copy">Копировать</button></details>
+      </article>
+      <article class="dl-card reveal" data-platform="macos">
+        <div class="dl-head">
+          <svg class="os" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-apple"/></svg>
+          <div>
+            <h3>macOS</h3>
+            <p class="dl-req" data-i18n="dl.mac.req">Apple Silicon с macOS 13+ или Intel с macOS 11+ · ≈700 МБ на диске</p>
+          </div>
+        </div>
+        <a class="btn btn-gold btn-block" href="https://github.com/mazamaka/ember-foundry-game/releases/latest" data-asset="macos">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg><span data-i18n="dl.mac.btn">Скачать образ .dmg</span>
+        </a>
+        <p class="dl-file"><span data-file="macos">EmberFoundry-macOS.dmg</span><span class="dl-size" data-size="macos"></span></p>
+        <ol class="steps">
+          <li data-i18n="dl.mac.s1">Открой образ и перетащи Ember Foundry в папку «Программы».</li>
+          <li data-i18n-html="dl.mac.s2">Игра не заверена в Apple, поэтому первый запуск надо разрешить. macOS 15 и новее: в предупреждении нажми <b>Готово</b>, затем <b>Системные настройки → Конфиденциальность и безопасность → Открыть всё равно</b>. macOS 13–14: Control-клик по игре → <b>Открыть</b>.</li>
+          <li data-i18n="dl.mac.s3">Дальше игра запускается обычным двойным кликом.</li>
+        </ol>
+        <details class="sha"><summary data-i18n="dl.sha">Контрольная сумма SHA-256</summary><code data-sha="macos">—</code><button class="copy" type="button" data-copy-sha="macos" data-i18n="dl.copy">Копировать</button></details>
+      </article>
+    </div>
+    <p class="dl-foot reveal"><span data-i18n="dl.foot">Все версии и что в них изменилось —</span> <a href="https://github.com/mazamaka/ember-foundry-game/releases" data-releases-link><span data-i18n="dl.releases">страница выпусков на GitHub</span></a>.</p>
+  </div>
+</section>
+
+<section class="section craft" id="craft">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <p class="kicker" data-i18n="cr.kicker">Как сделано</p>
+      <h2 data-i18n="cr.title">Игра, собранная из кода</h2>
+      <p data-i18n="cr.text">Ember Foundry сделана на Godot 4: от первого прототипа 15 сентября 2026 года до версии 0.9.33 — шесть недель. Почти всё, что видно на экране, собирается скриптами, поэтому игру можно быстро менять и проверять автоматически.</p>
+    </header>
+    <ul class="stats">
+      <li class="stat reveal"><b data-count="25000" data-suffix="+">25 000</b><span data-i18n="cr.s1">строк GDScript в самой игре</span></li>
+      <li class="stat reveal"><b data-count="10000" data-suffix="+">10 000</b><span data-i18n="cr.s2">строк Python для Blender: здания собираются кодом</span></li>
+      <li class="stat reveal"><b data-count="138">138</b><span data-i18n="cr.s3">автотестов — от экономики до кадров интерфейса</span></li>
+      <li class="stat reveal"><b data-count="368">368</b><span data-i18n="cr.s4">3D-моделей в сборке</span></li>
+      <li class="stat reveal"><b data-count="545">545</b><span data-i18n="cr.s5">звуков, собранных скриптом из лицензированных записей</span></li>
+      <li class="stat reveal"><b data-count="6">6</b><span data-i18n="cr.s6">недель от прототипа до 0.9</span></li>
+    </ul>
+    <div class="tech reveal">
+      <h3 data-i18n="cr.tech">Под капотом</h3>
+      <ul>
+        <li data-i18n="cr.t1">Godot 4.7, рендер Forward+ (Vulkan, Metal), GDScript</li>
+        <li data-i18n="cr.t2">Процедурные карты: дороги с развилками, хребты, залежи, сундуки</li>
+        <li data-i18n="cr.t3">Ночное освещение, LUT-цветокоррекция, GPU-частицы и туман войны</li>
+        <li data-i18n="cr.t4">Модели собираются скриптами Blender, цвет запекается в вершины</li>
+        <li data-i18n="cr.t5">Поддержка модов: контентные пакеты, профили, менеджер в меню</li>
+        <li data-i18n="cr.t6">Установщики для Windows и macOS собираются одной командой и сами проверяют установку и первый запуск</li>
+        <li data-i18n="cr.t7">Замеры плавности кадров на реальных сохранениях игроков</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="faq">
+  <div class="wrap narrow">
+    <header class="section-head reveal">
+      <p class="kicker" data-i18n="faq.kicker">Вопросы</p>
+      <h2 data-i18n="faq.title">Коротко о главном</h2>
+    </header>
+    <div class="faq-list">
+      <details class="reveal"><summary data-i18n="faq.q1">Это бесплатно?</summary><p data-i18n="faq.a1">Да. Ранняя версия бесплатна: без регистрации, рекламы и покупок внутри.</p></details>
+      <details class="reveal"><summary data-i18n="faq.q2">На каком языке игра?</summary><p data-i18n="faq.a2">Пока на русском: интерфейс, подсказки и описания.</p></details>
+      <details class="reveal"><summary data-i18n="faq.q3">Почему система предупреждает об установке?</summary><p data-i18n="faq.a3">Установщик для Windows не подписан платным сертификатом, а приложение для Mac не заверено в Apple. Поэтому Windows SmartScreen и macOS Gatekeeper один раз просят подтверждения — шаги описаны в разделе «Скачать». Контрольные суммы SHA-256 помогают убедиться, что файл не изменён.</p></details>
+      <details class="reveal"><summary data-i18n="faq.q4">Где хранятся сохранения?</summary><p data-i18n-html="faq.a4">Windows: <code>%APPDATA%\Godot\app_userdata\Ember Foundry</code>. macOS: <code>~/Library/Application Support/Godot/app_userdata/Ember Foundry</code>. Обновление и удаление игры их не трогают.</p></details>
+      <details class="reveal"><summary data-i18n="faq.q5">Какой нужен компьютер?</summary><p data-i18n="faq.a5">Windows 10 или 11 (64 бит) с видеокартой, поддерживающей Vulkan, либо Mac на Apple Silicon (macOS 13+) или Intel (macOS 11+). На диске — около 700 МБ. Качество графики настраивается в меню.</p></details>
+      <details class="reveal"><summary data-i18n="faq.q6">Можно ли делать моды?</summary><p data-i18n="faq.a6">Да: игра читает контентные моды, у каждого набора модов — свой профиль прогресса. Менеджер модов — в главном меню.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="last-call">
+  <canvas class="embers" data-embers aria-hidden="true"></canvas>
+  <div class="wrap last-inner reveal">
+    <h2 data-i18n="last.title">Замок света ждёт хранителя</h2>
+    <p data-i18n="last.text">Первая экспедиция — в Изумрудную чащу. Шесть дней, шесть ночей и одна дорога к замку.</p>
+    <a class="btn btn-gold btn-lg" href="#download" data-primary-download><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg><span data-primary-label data-i18n="cta.download">Скачать бесплатно</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="brand" href="#top"><span class="emblem emblem-sm" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#beacon"/></svg></span><span class="brand-word">Ember Foundry</span></a>
+      <p class="footer-note" data-i18n="foot.about">Фабрика и оборона в лесу. Ранняя версия для Windows и macOS.</p>
+    </div>
+    <nav aria-label="Ссылки" data-i18n-aria="foot.aria">
+      <ul class="footer-links">
+        <li><a href="#download" data-i18n="nav.download">Скачать</a></li>
+        <li><a href="https://github.com/mazamaka/ember-foundry-game" data-repo-link>GitHub</a></li>
+        <li><a href="https://github.com/mazamaka/ember-foundry-game/releases" data-releases-link data-i18n="foot.releases">Выпуски</a></li>
+        <li><a href="#top" data-i18n="foot.top">Наверх</a></li>
+      </ul>
+    </nav>
+    <p class="credits" data-i18n-html="foot.credits">Музыка — Kevin MacLeod (incompetech.com), CC BY 4.0. Персонажи — KayKit, CC0. Шрифты Alegreya — SIL OFL. Полный список авторов и лицензий — в игре: «Авторы и материалы». Сделано на <a href="https://godotengine.org">Godot Engine</a>.</p>
+    <p class="copyright">© 2026 Ember Foundry</p>
+  </div>
+</footer>
+
+<div class="lightbox" data-lightbox hidden>
+  <figure>
+    <img alt="" data-lightbox-img>
+    <figcaption data-lightbox-caption></figcaption>
+  </figure>
+  <button class="lb-btn lb-close" type="button" data-lightbox-close aria-label="Закрыть" data-i18n-aria="lb.close"><svg viewBox="0 0 24 24"><use href="#i-close"/></svg></button>
+  <button class="lb-btn lb-prev" type="button" data-lightbox-prev aria-label="Предыдущий кадр" data-i18n-aria="lb.prev"><svg viewBox="0 0 24 24"><use href="#i-chev-left"/></svg></button>
+  <button class="lb-btn lb-next" type="button" data-lightbox-next aria-label="Следующий кадр" data-i18n-aria="lb.next"><svg viewBox="0 0 24 24"><use href="#i-chev-right"/></svg></button>
+</div>
+<p class="visually-hidden" role="status" data-live></p>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- The game's К2 line icons (src/game/ui_theme.gd), 24×24, stroked. -->
+    <symbol id="beacon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 21.5h5.6l-1.1-10.5h-3.4Z"/><path d="M9.6 11h4.8M10.2 8.2h3.6v2.8h-3.6Z"/><path d="M12 5.5V3M4.5 6.5l3 2M19.5 6.5l-3 2M3.5 11.5h3.5M20.5 11.5H17"/></g></symbol>
+    <symbol id="i-build" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="scale(.75)"><path d="m7 24 13-13M15 7l5-4 8 8-4 5zM5 22l5 5-3 3-5-5z" stroke-width="2.4"/><path d="m6 4 3-2 5 5-3 3M18 19l9 9-3 3-9-9" stroke-width="2.4"/></g></symbol>
+    <symbol id="i-fortress" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9h4V4h3v4h4V4h3v5h4v12H3Zm6 0v-6h6v6M3 12h4m10 0h4"/></g></symbol>
+    <symbol id="i-upgrade" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V4m-6 6 6-6 6 6M4 20h16M6 15h12"/></g></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3.1" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.4" fill="currentColor" stroke="none"/><path d="M19.2 12L22 12M17.09 17.09L19.07 19.07M12 19.2L12 22M6.91 17.09L4.93 19.07M4.8 12L2 12M6.91 6.91L4.93 4.93M12 4.8L12 2M17.09 6.91L19.07 4.93"/></g></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M15.6 3.2a8.8 8.8 0 1 0 5.4 14.5A7.3 7.3 0 0 1 15.6 3.2Z" fill="currentColor"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5 18.5 12 8 18.5Z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></g></symbol>
+    <symbol id="i-windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.1 10.4 4v7.2H3Zm8.4-1.2L21 2.5v8.7h-9.6ZM3 12.8h7.4V20L3 18.9Zm8.4 0H21v8.7l-9.6-1.4Z"/></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9ZM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4Z"/></symbol>
+  </defs>
+</svg>
+</body>
+</html>
