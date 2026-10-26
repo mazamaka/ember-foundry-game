@@ -59,7 +59,7 @@ The Mac app is not notarized: allow the first launch in *System Settings → Pri
 
 ## How it's made
 
-Six weeks from the first prototype (September 15, 2026) to 0.9.34.
+Six weeks from the first prototype (September 15, 2026) to 0.9.35.
 
 - **Godot 4.7**, Forward+ renderer (Vulkan, Metal), about 25,000 lines of GDScript.
 - **Code-built art:** buildings are assembled by Blender Python scripts (10,000+ lines) with color baked into vertices;
