@@ -79,7 +79,7 @@ window.EF_I18N = {
 
     "gal.kicker": "Screenshots",
     "gal.title": "What it looks like",
-    "gal.text": "Frames from version 0.9.33 — graphics and interface exactly as in the game (the interface is in Russian).",
+    "gal.text": "Frames from version 0.9.36 — graphics and interface exactly as in the game (the interface is in Russian).",
     "g.night-wide": "Night over a late-game factory: beams of the castle and the beacons",
     "g.night-wide.alt": "Night over a late-game factory",
     "g.grove-hud": "Day one in the Emerald Grove",

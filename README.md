@@ -44,7 +44,7 @@ your castle, and everything you built fights back. Free early build for Windows 
   </tr>
 </table>
 
-All frames are taken from version 0.9.33 by the game's own capture scripts.
+All frames are taken from version 0.9.36 by the game's own capture scripts.
 
 ## Download
 
