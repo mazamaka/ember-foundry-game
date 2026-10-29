@@ -1,22 +1,22 @@
 {
-  "version": "0.9.35",
-  "build": "0.9.35-bosses-dock.20261026.1",
-  "date": "2026-10-26",
-  "tag": "v0.9.35",
+  "version": "0.9.36",
+  "build": "0.9.36-terrain-river.20261029.3",
+  "date": "2026-10-29",
+  "tag": "v0.9.36",
   "releases_url": "https://github.com/mazamaka/ember-foundry-game/releases",
-  "notes_url": "https://github.com/mazamaka/ember-foundry-game/releases/tag/v0.9.35",
+  "notes_url": "https://github.com/mazamaka/ember-foundry-game/releases/tag/v0.9.36",
   "assets": {
     "windows": {
-      "name": "EmberFoundry-0.9.35-Windows-Setup.exe",
-      "url": "https://github.com/mazamaka/ember-foundry-game/releases/download/v0.9.35/EmberFoundry-0.9.35-Windows-Setup.exe",
-      "bytes": 544839418,
-      "sha256": "30ca5e0ce83998ab32bf1919486f87dd4c5423427013f84f146103745da4186f"
+      "name": "EmberFoundry-0.9.36-Windows-Setup.exe",
+      "url": "https://github.com/mazamaka/ember-foundry-game/releases/download/v0.9.36/EmberFoundry-0.9.36-Windows-Setup.exe",
+      "bytes": 544923626,
+      "sha256": "93f829ac7ffaa91e874ac7d939bbd9a77df93e6b99f2aa3faba41dec1732463f"
     },
     "macos": {
-      "name": "EmberFoundry-0.9.35-macOS.dmg",
-      "url": "https://github.com/mazamaka/ember-foundry-game/releases/download/v0.9.35/EmberFoundry-0.9.35-macOS.dmg",
-      "bytes": 568842037,
-      "sha256": "54dd837bf648a05e50b102dd8f5f2d251299cda5c0ce9c0adbfe0a34c600ec39"
+      "name": "EmberFoundry-0.9.36-macOS.dmg",
+      "url": "https://github.com/mazamaka/ember-foundry-game/releases/download/v0.9.36/EmberFoundry-0.9.36-macOS.dmg",
+      "bytes": 568989961,
+      "sha256": "babcc5d8444a9ec6172bb4a038b109a4b42b55e06ba19c7a5eb92f52c6242b01"
     }
   }
 }
